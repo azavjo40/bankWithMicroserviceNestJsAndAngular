@@ -1,5 +1,9 @@
-# 1 npm run install
+# api
 
-# 2 npm run dev
+# 1 npm i
 
-# 3 service stared in http://localhost:4000
+# 2 npm run install
+
+# 3 npm run dev
+
+# 5 >> service stared in http://localhost:4000

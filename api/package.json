@@ -8,7 +8,7 @@
     "auth-micro-i": "npm install --prefix auth-micro",
     "auth-micro": "npm run start:dev --prefix auth-micro",
     "dev": "concurrently \"npm run start\" \"npm run bank-monolithic\"  \"npm run auth-micro\"",
-    "install": "concurrently \"npm run start\" \"npm run bank-monolithic-i\"   "
+    "install": "concurrently \"npm run auth-micro-i\" \"npm run bank-monolithic-i\" "
   },
   "author": "Azam",
   "license": "ISC",
