@@ -24,14 +24,14 @@ export class AppService {
       const candidate = await this.User.findOne({ email });
       if (candidate) return { message: 'This user already exists' };
       const hashedPassword: string = await hash(password, 12);
-      const workers: any = await this.User.find();
+      const candidates: any = await this.User.find();
       const user = new this.User({
         email,
         password: hashedPassword,
         name,
         lastName,
         roles,
-        permission: workers.length > 0 ? false : true,
+        permission: candidates.length > 0 ? false : true,
       });
 
       await user.save();
