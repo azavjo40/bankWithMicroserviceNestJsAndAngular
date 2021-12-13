@@ -7,7 +7,6 @@ import { RegisterDto } from './dto/register.dto';
 import { IAnswerPromise, IAnswerService } from './intarface';
 import { Auth, AuthDocument } from './schemas/auth.schema';
 import { hash, compare } from 'bcryptjs';
-import { Observable } from 'rxjs';
 
 @Injectable()
 export class AppService {
@@ -36,7 +35,7 @@ export class AppService {
 
       await user.save();
       const access_token: string = this.jwtService.sign({
-        email: user.email,
+        roles: user.roles,
         _id: user._id,
       });
 
@@ -67,7 +66,7 @@ export class AppService {
       if (!isMatchPass)
         return { message: 'Invalid password, please try again' };
       const access_token: string = this.jwtService.sign({
-        email: user.email,
+        roles: user.roles,
         _id: user._id,
       });
       const answerService: IAnswerService = {

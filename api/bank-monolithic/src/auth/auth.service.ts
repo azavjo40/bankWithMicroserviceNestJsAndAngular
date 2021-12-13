@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthService {
-  constructor(@Inject('HELLO_SERVICE') private readonly client: ClientProxy) {}
+  constructor(@Inject('AUTH') private readonly client: ClientProxy) {}
   async onApplicationBootstrap() {
     await this.client.connect();
   }

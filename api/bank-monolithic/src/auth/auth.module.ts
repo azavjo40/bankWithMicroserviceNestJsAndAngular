@@ -9,7 +9,11 @@ import { JwtStrategy } from './strategies/jwt.strategy';
 @Module({
   imports: [
     ClientsModule.register([
-      { name: 'HELLO_SERVICE', transport: Transport.TCP },
+      {
+        name: 'AUTH',
+        transport: Transport.TCP,
+        options: { host: '0.0.0.0', port: 3000 },
+      },
     ]),
     JwtModule.register({
       secret: jwtConstants.secret,
