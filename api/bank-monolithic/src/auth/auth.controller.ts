@@ -43,7 +43,6 @@ export class AuthController {
   @Roles(Role.Manager, Role.Director)
   @Post('get/role')
   getRoles(@Body() body: any) {
-    console.log(body);
     return { message: 'hello from get roles' };
   }
 }

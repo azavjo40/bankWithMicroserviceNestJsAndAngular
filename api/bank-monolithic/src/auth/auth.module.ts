@@ -12,7 +12,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
       {
         name: 'AUTH',
         transport: Transport.TCP,
-        options: { host: '0.0.0.0', port: 3000 },
+        options: { port: 5000 },
       },
     ]),
     JwtModule.register({

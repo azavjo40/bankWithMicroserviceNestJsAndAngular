@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
+import { Observable } from 'rxjs';
 import { AutoCreateCryptoKeyDto } from './dto/autoCreateCryptoKey.dto';
 import { DecryptionDto } from './dto/decryption.dto';
 import { EncryptionDto } from './dto/encryption.dto';
-import { IAutoCreateCryptoKey } from './intarface';
 
 @Injectable()
 export class EncryptService {
@@ -13,9 +13,9 @@ export class EncryptService {
     await this.client.connect();
   }
 
-  async autoCreateCryptoKey(autoCreateCryptoKeyDto: any) {
+  async autoCreateCryptoKey(autoCreateCryptoKeyDto: AutoCreateCryptoKeyDto) {
     try {
-      return this.client.send<any>(
+      return this.client.send<Promise<Observable<any>>>(
         { cmd: 'auto/create/crypto/key' },
         autoCreateCryptoKeyDto,
       );
@@ -34,7 +34,7 @@ export class EncryptService {
 
   encryption(encryptionDto: EncryptionDto) {
     try {
-      return this.client.send<any>({ cmd: 'encryption' }, encryptionDto);
+      return this.client.send<string>({ cmd: 'encryption' }, encryptionDto);
     } catch (e) {
       console.log(e);
     }

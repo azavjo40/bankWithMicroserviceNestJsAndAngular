@@ -9,7 +9,7 @@ import { EncryptService } from './encrypt.service';
       {
         name: 'ENCRYPT',
         transport: Transport.TCP,
-        options: { host: '0.0.0.0', port: 5000 },
+        options: { port: 6000 },
       },
     ]),
   ],
