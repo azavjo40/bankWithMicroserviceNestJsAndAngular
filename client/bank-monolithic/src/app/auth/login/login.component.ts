@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     this.loginService.login(this.form);
-    console.log(this.registrationForm);
+    setTimeout(() => (this.form = { email: '', password: '' }), 2000);
   }
 
   registrationForm = this.fb.group({

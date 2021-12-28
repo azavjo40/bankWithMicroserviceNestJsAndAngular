@@ -1,5 +1,5 @@
 <div class="contRegister">
-  <form class="mb-2 marging">
+  <form class="mb-2 marging" [formGroup]="registrationForm">
     <label for="exampleFormControlInput1" class="form-label marging"
       >Register
     </label>
@@ -13,6 +13,7 @@
       [value]="form.name"
       (ngModelChange)="changeHandler()"
       [(ngModel)]="form.name"
+      formControlName="name"
     />
     <input
       type="text"
@@ -23,6 +24,7 @@
       [value]="form.lastName"
       (ngModelChange)="changeHandler()"
       [(ngModel)]="form.lastName"
+      formControlName="lastName"
     />
     <input
       type="text"
@@ -33,6 +35,7 @@
       [value]="form.roles"
       (ngModelChange)="changeHandler()"
       [(ngModel)]="form.roles"
+      formControlName="roles"
     />
     <input
       type="email"
@@ -43,6 +46,7 @@
       [value]="form.email"
       (ngModelChange)="changeHandler()"
       [(ngModel)]="form.email"
+      formControlName="email"
     />
     <input
       type="password"
@@ -53,7 +57,14 @@
       [value]="form.password"
       (ngModelChange)="changeHandler()"
       [(ngModel)]="form.password"
+      formControlName="password"
     />
-    <button (click)="register()" class="btn btn-dark marging">Register</button>
+    <button
+      (click)="register()"
+      [disabled]="!registrationForm.valid"
+      class="btn btn-dark marging"
+    >
+      Register
+    </button>
   </form>
 </div>
