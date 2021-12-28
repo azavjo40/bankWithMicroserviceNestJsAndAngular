@@ -1,0 +1,41 @@
+<div class="contLogin">
+  <form class="mb-2 marging" [formGroup]="registrationForm">
+    <label for="exampleFormControlInput1" class="form-label marging"
+      >Login
+    </label>
+
+    <input
+      matInput
+      type="email"
+      class="form-control marging"
+      id="exampleFormControlInput1"
+      placeholder="name@example.com"
+      name="email"
+      [value]="form.email"
+      (ngModelChange)="changeHandler()"
+      [(ngModel)]="form.email"
+      formControlName="email"
+    />
+    <input
+      matInput
+      type="password"
+      class="form-control marging"
+      id="exampleFormControlInput1"
+      placeholder="password"
+      name="password"
+      [value]="form.password"
+      (ngModelChange)="changeHandler()"
+      [(ngModel)]="form.password"
+      formControlName="password"
+    />
+    <button
+      mat-raised-button
+      (click)="login()"
+      type="button"
+      class="btn btn-dark marging"
+      [disabled]="!registrationForm.valid"
+    >
+      Login
+    </button>
+  </form>
+</div>
