@@ -8,7 +8,6 @@ import {
   Request,
   UseGuards,
   Get,
-  UseInterceptors,
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
@@ -36,6 +35,7 @@ export class AuthController {
   login(
     @Body(new ValidationPipe()) loginDto: LoginDto,
   ): Observable<IAnswerPromise> {
+    console.log(loginDto);
     return this.authService.login(loginDto);
   }
 

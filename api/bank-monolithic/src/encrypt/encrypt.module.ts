@@ -15,5 +15,6 @@ import { EncryptService } from './encrypt.service';
   ],
   controllers: [EncryptController],
   providers: [EncryptService],
+  exports: [EncryptService],
 })
 export class EncryptModule {}

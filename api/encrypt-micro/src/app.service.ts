@@ -17,35 +17,44 @@ export class AppService {
     autoCreateCryptoKeyDto: AutoCreateCryptoKeyDto,
   ): Promise<IAutoCreateCryptoKey> {
     try {
-      const { userId } = autoCreateCryptoKeyDto;
-      const timeId = Date.now().toString();
+      const { userId, timeId } = autoCreateCryptoKeyDto;
+      const encryptKeysService: any = await this.encrypt.findOne({
+        userId: userId && userId,
+        timeId: timeId && timeId,
+      });
+      if (encryptKeysService) return encryptKeysService;
       const newKey = new NodeRSA({ b: 1024 });
       const publicKey = newKey.exportKey('public');
       const privateKey = newKey.exportKey('private');
       const encryptKeys = await new this.encrypt({
         publicKey,
         privateKey,
-        userId: userId ? userId : timeId,
-      });
+        userId: userId && userId,
+        timeId: timeId && timeId,
+      }).save();
       if (!userId) {
         setTimeout(async () => {
           try {
-            await this.encrypt.deleteOne({ userId: timeId });
+            await this.encrypt.deleteOne({ timeId });
           } catch (e) {
             console.log(e);
           }
         }, 9000);
       }
-      return { publicKey, privateKey };
+      return encryptKeys;
     } catch (e) {
       console.log(e);
     }
   }
 
-  decryption(decryptionDto: DecryptionDto): any {
+  async decryption(decryptionDto: DecryptionDto) {
     try {
-      const { privateKey, data } = decryptionDto;
-      const decrypte = new NodeRSA(privateKey);
+      const { userId, timeId, data } = decryptionDto;
+      const keys: any = await this.autoCreateCryptoKey({
+        userId: userId && userId,
+        timeId: timeId && timeId,
+      });
+      const decrypte = new NodeRSA(keys.privateKey);
       const decryptData = decrypte.decrypt(data, 'utf8');
       const decryptDataToParse: any = JSON.parse(decryptData);
       return decryptDataToParse;
@@ -54,10 +63,14 @@ export class AppService {
     }
   }
 
-  encryption(encryptionDto: EncryptionDto): string {
+  async encryption(encryptionDto: EncryptionDto) {
     try {
-      const { publicKey, data } = encryptionDto;
-      const encrypt = new NodeRSA(publicKey);
+      const { userId, timeId, publicKey, data } = encryptionDto;
+      const keys: any = await this.autoCreateCryptoKey({
+        userId: userId && userId,
+        timeId: timeId && timeId,
+      });
+      const encrypt = new NodeRSA(publicKey ? publicKey : keys.publicKey);
       const dataToString: string = JSON.stringify(data);
       const dataEncrypt: any = encrypt.encrypt(dataToString, 'base64');
       return dataEncrypt;

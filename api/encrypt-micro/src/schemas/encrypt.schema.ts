@@ -12,6 +12,9 @@ export class Encrypt {
 
   @Prop()
   userId: string;
+
+  @Prop()
+  timeId: string;
 }
 
 export const EncryptSchema = SchemaFactory.createForClass(Encrypt);

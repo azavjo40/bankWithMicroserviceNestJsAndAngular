@@ -18,12 +18,12 @@ export class AppController {
   }
 
   @MessagePattern({ cmd: 'decryption' })
-  decryption(decryptionDto: DecryptionDto): any {
+  decryption(decryptionDto: DecryptionDto) {
     return this.appService.decryption(decryptionDto);
   }
 
   @MessagePattern({ cmd: 'encryption' })
-  encryption(encryptionDto: EncryptionDto): string {
+  encryption(encryptionDto: EncryptionDto) {
     return this.appService.encryption(encryptionDto);
   }
 }

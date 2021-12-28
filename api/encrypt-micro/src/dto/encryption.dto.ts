@@ -1,6 +1,7 @@
 import { IsString } from 'class-validator';
 export class EncryptionDto {
   readonly data: any;
-  @IsString()
-  readonly publicKey: any;
+  readonly publicKey?: string;
+  readonly userId?: string;
+  readonly timeId?: string;
 }

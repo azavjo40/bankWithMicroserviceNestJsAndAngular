@@ -6,13 +6,14 @@ import { PassportModule } from '@nestjs/passport';
 import { jwtConstants } from 'src/constants';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './strategies/jwt.strategy';
+import { EncryptModule } from 'src/encrypt/encrypt.module';
 @Module({
   imports: [
     ClientsModule.register([
       {
         name: 'AUTH',
         transport: Transport.TCP,
-        options: { port: 5000 },
+        options: { host: '0.0.0.0', port: 7000 },
       },
     ]),
     JwtModule.register({
@@ -20,6 +21,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
       signOptions: { expiresIn: '1h' },
     }),
     PassportModule,
+    EncryptModule,
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy],
