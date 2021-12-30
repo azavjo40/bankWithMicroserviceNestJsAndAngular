@@ -9,9 +9,9 @@ import { EncryptionDto } from './dto/encryption.dto';
 export class EncryptService {
   constructor(@Inject('ENCRYPT') private readonly client: ClientProxy) {}
 
-  async onApplicationBootstrap() {
-    await this.client.connect();
-  }
+  // async onApplicationBootstrap() {
+  //   await this.client.connect();
+  // }
 
   async autoCreateCryptoKey(autoCreateCryptoKeyDto: AutoCreateCryptoKeyDto) {
     try {

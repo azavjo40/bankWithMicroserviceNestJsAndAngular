@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   changeHandler(): void {}
 
   login(): void {
-    this.loginService.login(this.form);
+    this.loginService.login(this.form).subscribe();
     setTimeout(() => (this.form = { email: '', password: '' }), 2000);
   }
 

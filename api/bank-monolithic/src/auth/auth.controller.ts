@@ -35,14 +35,13 @@ export class AuthController {
   login(
     @Body(new ValidationPipe()) loginDto: LoginDto,
   ): Observable<IAnswerPromise> {
-    console.log(loginDto);
     return this.authService.login(loginDto);
   }
 
-  @UseGuards(JwtAuthGuard)
-  @Roles(Role.Manager, Role.Director)
-  @Post('get/role')
-  getRoles(@Body() body: any) {
-    return { message: 'hello from get roles' };
-  }
+  // @UseGuards(JwtAuthGuard)
+  // @Roles(Role.Manager, Role.Director)
+  // @Post('get/role')
+  // getRoles(@Body() body: any) {
+  //   return { message: 'hello from get roles' };
+  // }
 }

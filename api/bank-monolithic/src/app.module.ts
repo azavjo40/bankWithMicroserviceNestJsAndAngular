@@ -6,7 +6,8 @@ import { AuthModule } from './auth/auth.module';
 import { RolesGuard } from './auth/roles/roles.guard';
 import { EncryptModule } from './encrypt/encrypt.module';
 @Module({
-  imports: [AuthModule, EncryptModule],
+  // imports: [AuthModule, EncryptModule],
+  imports: [AuthModule],
   controllers: [AppController],
   providers: [
     AppService,

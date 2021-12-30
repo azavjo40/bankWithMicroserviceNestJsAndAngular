@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
   changeHandler(): void {}
 
   register(): void {
-    this.registerService.register(this.form);
+    this.registerService.register(this.form).subscribe();
     setTimeout(() => {
       this.form = {
         name: '',
