@@ -37,11 +37,4 @@ export class AuthController {
   ): Observable<IAnswerPromise> {
     return this.authService.login(loginDto);
   }
-
-  // @UseGuards(JwtAuthGuard)
-  // @Roles(Role.Manager, Role.Director)
-  // @Post('get/role')
-  // getRoles(@Body() body: any) {
-  //   return { message: 'hello from get roles' };
-  // }
 }

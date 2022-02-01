@@ -11,9 +11,11 @@ export class AlertComponent implements OnInit {
   ngOnInit(): void {
     this.showMessages();
   }
-  textAlert: any = '';
+  textAlert: any = 'hello';
 
   showMessages(): void {
-    this.alertService.subject.subscribe((msgs: any) => (this.textAlert = msgs));
+    this.alertService
+      .showErrorMessages()
+      .subscribe((msg) => (this.textAlert = msg));
   }
 }
