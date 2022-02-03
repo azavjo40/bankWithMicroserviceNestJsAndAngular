@@ -7,9 +7,10 @@ import { AlertComponent } from './alert/alert.component';
 import { AlertService } from './alert/alert.service';
 import { AppService } from './app.service';
 import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
-  declarations: [AppComponent, AlertComponent],
+  declarations: [AppComponent, AlertComponent, NavbarComponent],
   imports: [BrowserModule, AuthModule, AppRoutingModule, HttpClientModule],
   providers: [AlertService, AppService],
   bootstrap: [AppComponent],

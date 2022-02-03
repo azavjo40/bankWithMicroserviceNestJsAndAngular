@@ -8,11 +8,11 @@ export class AlertService {
   constructor() {}
   subject = new Subject();
 
-  showErrorMessages(): Observable<any> {
+  showErrorMessage(): Observable<any> {
     return this.subject;
   }
 
-  putErrorMessages(msgs: string): void {
+  putErrorMessage(msgs: string): void {
     this.subject.next(msgs);
     setTimeout(() => this.subject.next(''), 3000);
   }
