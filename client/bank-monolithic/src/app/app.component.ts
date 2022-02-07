@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { fromEvent } from 'rxjs';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
