@@ -16,14 +16,18 @@ export class NavbarComponent implements OnInit {
   ) {}
   isAuth = false;
   ngOnInit(): void {
+    this.checkIsAuth();
     this.getIsAuth();
   }
   fromEvent(event: string) {
     fromEvent(window, event).subscribe(() => this.authService.checkIsAuth());
   }
   getIsAuth(): void {
-    this.fromEvent('load');
     this.authService.getIsAuth().subscribe((bool) => (this.isAuth = bool));
+  }
+  checkIsAuth() {
+    this.fromEvent('load');
+    this.fromEvent('click');
   }
   logOut(): void {
     this.appService.removeItemLocal(saveDataUser);

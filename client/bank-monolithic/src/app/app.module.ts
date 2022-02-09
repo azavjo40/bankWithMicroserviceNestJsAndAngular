@@ -8,10 +8,21 @@ import { AlertService } from './alert/alert.service';
 import { AppService } from './app.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './navbar/navbar.component';
+import { CoreModule } from './core/core.module';
+import { CardsModule } from './cards/cards.module';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
   declarations: [AppComponent, AlertComponent, NavbarComponent],
-  imports: [BrowserModule, AuthModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AuthModule,
+    AppRoutingModule,
+    HttpClientModule,
+    CoreModule,
+    CardsModule,
+    HomeModule,
+  ],
   providers: [AlertService, AppService],
   bootstrap: [AppComponent],
 })
